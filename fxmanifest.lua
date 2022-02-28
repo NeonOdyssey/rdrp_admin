@@ -29,7 +29,13 @@ server_scripts {
 }
 
 
+-- UI HTML page
+ui_page 'ui/index.html'
+
 -- Add all files used in the resource (excluding client / server scripts)
 files {
-
+    'ui/index.html',
+    'ui/style.css',
+    'ui/script.js',
+    'ui/assets/*.png'
 }
