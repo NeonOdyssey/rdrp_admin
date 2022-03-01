@@ -1,12 +1,21 @@
-/* Background Enter */
-.bg-show {
-    
+#bg {
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
 }
 
-/* Background Leave */
+/* Background Enter */
+#bg.show {
+    opacity: 1;
+}
 
+
+#panel {
+    transition: all 0.5s ease-in-out;
+    transform: translateX(100%);
+}
 
 /* Panel Slide Enter */
+#panel.show {
+    transform: translateX(0)
+}
 
-
-/* Panel Slide Leave */

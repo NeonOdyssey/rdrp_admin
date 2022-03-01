@@ -12,42 +12,19 @@
 </head>
 
 <body style="background-image: url(https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2018/10/25/2ca8299e-017d-4649-848b-d0f1ab88b5a8/red-dead-redemption-2-screenshot); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
-    <div 
-        x-data="{ isOpen: true }"
-        class="fixed inset-0 overflow-hidden"
-        aria-labelledby="slide-over-title"
-        role="dialog"
-        aria-modal="true">
+    <div class="fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
         <div class="absolute inset-0 overflow-hidden">
-        <div 
-            x-show="isOpen"
-            x-transition:enter="ease-in-out duration-500"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="ease-in-out duration-500"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            class="absolute inset-0 bg-black bg-opacity-80 transition-opacity"
-            aria-hidden="true"></div>
+        <div id="bg" class="absolute inset-0 bg-black bg-opacity-80 transition-opacity" aria-hidden="true" onclick="_close()"></div>
     
         <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
-            <div 
-                x-show="isOpen"
-                x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
-                x-transition:enter-start="translate-x-full"
-                x-transition:enter-end="translate-x-0"
-                x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
-                x-transition:leave-start="translate-x-0"
-                x-transition:leave-end="translate-x-full"
-                class="pointer-events-auto w-screen max-w-4xl">
-
+            <div id="panel" class="pointer-events-auto w-screen max-w-4xl">
             <div class="flex h-full flex-col overflow-y-scroll py-6 shadow-xl bg-gradient-to-br from-neutral-900 to-slate-900">
                 <div class="px-4 sm:px-6">
                 <div class="flex items-start justify-between items-center justify-center">
                     <lottie-player class="mb-2" src="https://assets8.lottiefiles.com/packages/lf20_sfhiqvwy.json" background="transparent" speed="1" style="width: auto; height: 50px;" loop autoplay></lottie-player>
                     <h2 class="text-3xl font-bold text-red-500" id="slide-over-title">Admin Panel</h2>
                     <div class="ml-3 flex h-7 items-center">
-                    <button type="button" class="rounded-md text-gray-400 hover:text-red-500 focus:outline-none" @click="isOpen = !isOpen">
+                    <button type="button" class="rounded-md text-gray-400 hover:text-red-500 focus:outline-none" onclick="_close()">
                         <span class="sr-only">Close panel</span>
                         <!-- Heroicon name: outline/x -->
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
