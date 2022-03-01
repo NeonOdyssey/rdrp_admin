@@ -5,25 +5,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                colors: {
-                    clifford: '#da373d',
-                }
-                }
-            }
-            }
-    </script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <link rel="stylesheet" href="styles.css">
-    <style>#admin,#exist { display: none; }</style>
 
 </head>
 
-<body>
-
+<body style="background-image: url(https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2018/10/25/2ca8299e-017d-4649-848b-d0f1ab88b5a8/red-dead-redemption-2-screenshot); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
     <div 
         x-data="{ isOpen: true }"
         class="fixed inset-0 overflow-hidden"
@@ -39,10 +27,10 @@
             x-transition:leave="ease-in-out duration-500"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            class="absolute inset-0 bg-black bg-opacity-80 transition-opacity"
             aria-hidden="true"></div>
     
-        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
             <div 
                 x-show="isOpen"
                 x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -51,13 +39,15 @@
                 x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
                 x-transition:leave-start="translate-x-0"
                 x-transition:leave-end="translate-x-full"
-                class="pointer-events-auto w-screen max-w-md">
-            <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                class="pointer-events-auto w-screen max-w-4xl">
+
+            <div class="flex h-full flex-col overflow-y-scroll py-6 shadow-xl bg-gradient-to-br from-neutral-900 to-slate-900">
                 <div class="px-4 sm:px-6">
-                <div class="flex items-start justify-between">
-                    <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Panel title</h2>
+                <div class="flex items-start justify-between items-center justify-center">
+                    <lottie-player class="mb-2" src="https://assets8.lottiefiles.com/packages/lf20_sfhiqvwy.json" background="transparent" speed="1" style="width: auto; height: 50px;" loop autoplay></lottie-player>
+                    <h2 class="text-3xl font-bold text-red-500" id="slide-over-title">Admin Panel</h2>
                     <div class="ml-3 flex h-7 items-center">
-                    <button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" @click="isOpen = !isOpen">
+                    <button type="button" class="rounded-md text-gray-400 hover:text-red-500 focus:outline-none" @click="isOpen = !isOpen">
                         <span class="sr-only">Close panel</span>
                         <!-- Heroicon name: outline/x -->
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -70,7 +60,97 @@
                 <div class="relative mt-6 flex-1 px-4 sm:px-6">
                 <!-- Replace with your content -->
                 <div class="absolute inset-0 px-4 sm:px-6">
-                    <div class="h-full border-2 border-dashed border-gray-200" aria-hidden="true"></div>
+                    <div class="h-full grid grid-cols-5 gap-10">
+                        <!-- Player listings -->
+                        <div class="h-full col-span-2" aria-hidden="true">
+                            <div class="pb-2 border-b border-gray-200">
+                                <h3 class="text-lg leading-6 font-medium text-gray-200">Player List</h3>
+                              </div>
+                        </div>
+
+                        <!-- Admin functions -->
+                        <div class="h-full col-span-3" aria-hidden="true">
+                            <div class="grid grid-rows-4 grid-flow-col gap-20">
+                                <div class="h-full grid grid-cols-3 gap-4 text-white text-bold" x-data="{ isNoclip: false, isGhost: false}">
+
+
+                                    <button data-tooltip-target="tooltip-dv" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-dv" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Delete Vehicle
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+
+
+                                    <button data-tooltip-target="tooltip-noclip" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center" @click="isNoclip = !isNoclip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path x-show="!isNoclip" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                            <path x-show="isNoclip" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-noclip" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        <span x-show="!isNoclip">Noclip On</span>
+                                        <span x-show="isNoclip">Noclip Off</span>
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+
+
+                                    <button data-tooltip-target="tooltip-ghost" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center" @click="isGhost = !isGhost">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path x-show="!isGhost" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            <path x-show="isGhost" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path x-show="isGhost" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-ghost" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        <span x-show="!isGhost">Invisiblity On</span>
+                                        <span x-show="isGhost">Invisiblity Off</span>
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+
+
+                                    <button data-tooltip-target="tooltip-announce" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-announce" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Global Announce
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+
+
+                                    <button data-tooltip-target="tooltip-clear" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-clear" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Clear Area
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+
+
+                                  </div>
+                                  <div class="h-full row-span-3 bg-pink-500">
+                                    <!-- 
+
+                                        Direct message,
+                                        Warn,
+                                        Slay, 
+                                        Slap, 
+                                        Kick,
+                                        Freeze / Chain,
+
+                                     -->
+                                  </div>
+                            </div>                            
+                        </div>
+                    </div>
                 </div>
                 <!-- /End replace -->
                 </div>
@@ -80,6 +160,7 @@
         </div>
     </div>
   
+    <script src="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.bundle.js"></script>
 
 </body> 
 </html>
