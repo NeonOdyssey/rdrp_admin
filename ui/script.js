@@ -1,5 +1,5 @@
-let selectedPlayer = 0;
-let _testPlayers = [{name: "NEO", id:9}, {name: "RandomPlayer", id:12}, {name: "SkullOG", id:13}];
+let selectedPlayer = 999;
+let players = [{name: "NEO", id:9, steam:"steam:012345678900000"}, {name: "RandomPlayer", id:12, steam:"steam:000000000000000"}, {name: "SkullOG", id:13, steam:"steam:xxxxxxxxxxxxxxx"}];
 let perms = 0; // Mod: 0, Admin: 1, Senior: 2, Manager: 3, Super: 4
 let modalAction = null;
 let buttonIds = { 
@@ -29,10 +29,11 @@ let buttonIds = {
 
 $(function(){ 
     // _open()
-    insertPlayerList(_testPlayers)
+    insertPlayerList(players)
     window.addEventListener('message', function(event) { 
         if(event.data.type == "open"){ 
             insertPlayerList(event.data.players);
+            players = event.data.players;
             // perms = event.data.perms;
             _open()
         }
@@ -46,6 +47,7 @@ function _open() {
     setPermissions(perms, buttonIds);
     document.getElementById("bg").classList.toggle("show");
     document.getElementById("panel").classList.toggle("show");
+    removePlayer();
     a16b3863105();
 }
 
@@ -73,6 +75,29 @@ function unsetPermissions(buttonIds) {
 // Button presses
 //-----------------------
 
+
+// View player button
+function viewPlayer(_id) {
+    selectPlayer = _id
+
+    document.getElementById('info-id').innerHTML = players[_id].id
+    document.getElementById('info-name').innerHTML = players[_id].name
+    document.getElementById('info-steam').innerHTML = players[_id].steam
+
+    document.getElementById('no-player-selected').classList.add("hide")
+    document.getElementById('player-selected').classList.remove("hide")
+
+}
+
+// Remove slected player
+function removePlayer() {
+    selectPlayer = 999;
+
+    document.getElementById('no-player-selected').classList.remove("hide")
+    document.getElementById('player-selected').classList.add("hide")
+}
+
+
 // Delete vehicle
 function dv() { $.post('http://rdrp_admin/dv', JSON.stringify({player:selectedPlayer})) }
 
@@ -90,6 +115,7 @@ function announce() { modalShow("announce", "Global Announce", "Enter a message 
 
 // Clear Area
 function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({player:selectedPlayer})) }
+
 
 // Direct message
 function directMessage() { modalShow("directMessage", "Direct Message", "Send a player a direct message in text chat", 0, true) }
@@ -213,7 +239,7 @@ function insertPlayerList(players) {
     let _players = ""
     let playerList = document.getElementById('player-list');
     for (var i in players) {
-        _players += playerBox(players[i].id, players[i].name, "steam:xxxxxxxxxxxxxxx");
+        _players += playerBox(i, players[i].id, players[i].name, "steam:xxxxxxxxxxxxxxx");
     }
     playerList.innerHTML = _players
 }
@@ -224,8 +250,8 @@ function insertPlayerList(players) {
 //-----------------------
 
 // Player box
-function playerBox(id, username, steamid) {
-return `<li class="py-4"><div class="flex items-center space-x-4"><div class="flex-shrink-0"><h1 class="h-8 w-8 text-gray-200 text-center">${id}</h1></div><div class="flex-1 min-w-0"><p class="text-sm font-medium text-gray-200 truncate">${username}</p><p class="text-sm text-gray-500 truncate">${steamid}</p></div><div><button class="inline-flex items-center shadow-sm px-2.5 py-0.5 text-sm leading-5 rounded-full bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White"> View </button></div></div></li>`;
+function playerBox(_id, id, username, steamid) {
+return `<li class="py-4"><div class="flex items-center space-x-4"><div class="flex-shrink-0"><h1 class="h-8 w-8 text-gray-200 text-center">${id}</h1></div><div class="flex-1 min-w-0"><p class="text-sm font-medium text-gray-200 truncate">${username}</p><p class="text-sm text-gray-500 truncate">${steamid}</p></div><div><button onclick="viewPlayer(${_id})" class="inline-flex items-center shadow-sm px-2.5 py-0.5 text-sm leading-5 rounded-full bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White"> View </button></div></div></li>`;
 }
 
 function a16b3863105(){

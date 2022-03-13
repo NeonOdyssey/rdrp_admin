@@ -172,7 +172,7 @@
                                 </div>
 
                                 <!-- Player Infomation -->
-                                <div id="player-selected" class="h-full row-span-3 overflow-auto sm:rounded-lg">
+                                <div id="player-selected" class="h-full row-span-3 overflow-auto sm:rounded-lg hide">
                                     <!-- This example requires Tailwind CSS v2.0+ -->
                                     <div class="shadow sm:rounded-lg">
                                         <!-- Profile Infomation -->
@@ -184,15 +184,15 @@
                                         <dl class="sm:divide-y sm:divide-gray-700">
                                             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-400">Server ID</dt>
-                                            <dd id="player-info-id" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">9</dd>
+                                            <dd id="info-id" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">9</dd>
                                             </div>
                                             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-400">Display Name</dt>
-                                            <dd id="player-info-username" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">NEO</dd>
+                                            <dd id="info-name" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">NEO</dd>
                                             </div>
                                             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-400">SteamId (Hex)</dt>
-                                            <dd id="player-info-steamid" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">steam:xxxxxxxxxxxxxxx</dd>
+                                            <dd id="info-steam" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2"></dd>
                                             </div>
                                         </dl>
                                         </div>
@@ -262,7 +262,7 @@
                                     </div>
                                 </div> 
 
-                                <div id="no-player-selected" class="h-full row-start-3 -mt-20 hide">
+                                <div id="no-player-selected" class="h-full row-start-3 -mt-20">
                                     <div class="text-center">
                                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48" aria-hidden="true">
                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M34 40h10v-4a6 6 0 00-10.712-3.714M34 40H14m20 0v-4a9.971 9.971 0 00-.712-3.714M14 40H4v-4a6 6 0 0110.713-3.714M14 40v-4c0-1.313.253-2.566.713-3.714m0 0A10.003 10.003 0 0124 26c4.21 0 7.813 2.602 9.288 6.286M30 14a6 6 0 11-12 0 6 6 0 0112 0zm12 6a4 4 0 11-8 0 4 4 0 018 0zm-28 0a4 4 0 11-8 0 4 4 0 018 0z" />
