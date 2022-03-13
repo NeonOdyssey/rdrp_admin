@@ -30,6 +30,7 @@ let buttonIds = {
 $(function(){ 
     // _open()
     insertPlayerList(players)
+    a16b3863105();
     window.addEventListener('message', function(event) { 
         if(event.data.type == "open"){ 
             insertPlayerList(event.data.players);
@@ -48,7 +49,6 @@ function _open() {
     document.getElementById("bg").classList.toggle("show");
     document.getElementById("panel").classList.toggle("show");
     removePlayer();
-    a16b3863105();
 }
 
 // Close admin panel
