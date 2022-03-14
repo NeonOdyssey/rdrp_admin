@@ -31,6 +31,7 @@ ui_page 'ui/index.html'
 files {
     'ui/index.html',
     'ui/script.js',
+    'ui/styles.css',
     'ui/assets/*.png',
     'ui/assets/lottie/logo.json'
 }
