@@ -19,11 +19,11 @@ end)
 -------------------------
 
 -- open menu and send all players
-RegisterNetEvent('rdrp_admin:_open', function()
-    if TriggerServerEvent('rdrp_admin:allowAccess', 'open') then
-        SetNuiFocus(true, true)
-        SendNUIMessage({type = "open", players = getPlayersAll()})
-    end
+RegisterNetEvent('rdrp_admin:_open', function() TriggerServerEvent('rdrp_admin:allowAccess', 'open') end)
+
+RegisterNetEvent('rdrp_admin:open', function(data)
+    SetNuiFocus(true, true)
+    SendNUIMessage({type = "open", players = getPlayersAll()})
 end)
 
 

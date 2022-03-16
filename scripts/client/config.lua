@@ -29,45 +29,48 @@ Config.Ghost = {
 -------------------------
 -- Permissions config 
 -------------------------
--- Mod      (Support staff)
--- Admin    (Player management)
--- Senior   (Player management / supervisor)
--- Manager  (Staff management / Community UpKeep)
--- Super    (Founders)
+-- Staff list from highest perm level to lowest. 
+-- Each perm enherits the perms from the staff below
+-------------------------
+-- 4 = superAdmin    (Founders)
+-- 3 = manager  (Staff management / Community UpKeep)
+-- 2 = senior   (Supervisor)
+-- 1 = admin    (Player management)
+-- 0 = mod      (Support staff)
 -------------------------
 Config.Perms = { 
 
     -- Chat
-    Dm = "mod",             -- Direct message players in chat
-    Announce = "mod",       -- Global announcement player will be able to see
+    Dm = 0,             -- Direct message players in chat
+    Announce = 0,       -- Global announcement player will be able to see
 
     -- Tp
-    Tp = "admin",           -- Teleport to a specific player
-    Tpm = "admin",          -- Teleport to a marker set on map
-    Bring = "admin",        -- Bring a player to said admin
-    Noclip = "admin",       -- Noclip
+    Tp = 1,           -- Teleport to a specific player
+    Tpm = 1,          -- Teleport to a marker set on map
+    Bring = 1,        -- Bring a player to said admin
+    Noclip = 1,       -- Noclip
 
     -- Players
-    Ghost = "admin",        -- Invisible
-    Heal = "admin",         -- Heal / Revive a player
-    Spectate = "admin",     -- Spectate a player
+    Ghost = 1,        -- Invisible
+    Heal = 1,         -- Heal / Revive a player
+    Spectate = 1,     -- Spectate a player
 
     -- World
-    Dv = "admin",           -- Delete vehicle from world
-    ClearArea = "senior",   -- Clear a specific area from props, entities, vehicle, peds ect
+    Dv = 1,           -- Delete vehicle from world
+    ClearArea = 2,   -- Clear a specific area from props, entities, vehicle, peds ect
 
     -- Punishments
-    Warn = "mod",           -- Warn a player with a message that they have to acknowladge
-    Chain = "admin",        -- Freeze a player in place (really really slow and add prison cloathing)
-    Slap = "admin",         -- Slap a player for a set ammount of hp and knockback (may not add)
-    Slay = "admin",         -- Kill player on spot
-    Kick = "admin",         -- Kick player from server with message
-    Ban = "admin",          -- Ban player from server with message
+    Warn = 0,           -- Warn a player with a message that they have to acknowladge
+    Chain = 1,        -- Freeze a player in place (really really slow and add prison cloathing)
+    Slap = 1,         -- Slap a player for a set ammount of hp and knockback (may not add)
+    Slay = 1,         -- Kill player on spot
+    Kick = 1,         -- Kick player from server with message
+    Ban = 1,          -- Ban player from server with message
     
     -- Setting players things
-    Job = "admin",          -- Set a players job
-    Money = "manager",      -- Add/Remove money from player
-    Gold = "manager",       -- Add/Remove gold from player
-    StaffPerms = "manager", -- Change staff perms on players
+    Job = 1,          -- Set a players job
+    Money = 3,      -- Add/Remove money from player
+    Gold = 3,       -- Add/Remove gold from player
+    StaffPerms = 3, -- Change staff perms on players
     
 }

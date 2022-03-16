@@ -1,6 +1,5 @@
 -- Delete vehicle
 RegisterNUICallback('dv', function(data, cb)
-    if TriggerServerEvent('rdrp_admin:allowAccess', 'mod') then
         local _id       = PlayerPedId()
         local _horse    = GetMount(_id)
         local _coach    = GetVehiclePedIsIn(_id)
@@ -22,7 +21,4 @@ RegisterNUICallback('dv', function(data, cb)
             SendNUIMessage({type = "close"})
         end
 
-    else
-        cb({error = 'You don\'t have the perms todo that!'})
-    end
 end)

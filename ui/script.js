@@ -1,12 +1,12 @@
 let selectedPlayer = 999;
 let players = [{name: "NEO", id:9, steam:"steam:012345678900000"}, {name: "RandomPlayer", id:12, steam:"steam:000000000000000"}, {name: "SkullOG", id:13, steam:"steam:xxxxxxxxxxxxxxx"}];
-let perms = 0; // Mod: 0, Admin: 1, Senior: 2, Manager: 3, Super: 4
+let perms = 1; // Mod: 0, Admin: 1, Senior: 2, Manager: 3, Super: 4
 let modalAction = null;
 let buttonIds = { 
     "dv": 1,
     "noclip": 1,
     "ghost": 1,
-    "coords": 0,
+    "coords": 4,
     "announce": 0,
     "clear-area": 2,
     "tpm": 1,
@@ -78,7 +78,7 @@ function unsetPermissions(buttonIds) {
 
 // View player button
 function viewPlayer(_id) {
-    selectPlayer = _id
+    selectedPlayer = _id
 
     document.getElementById('info-id').innerHTML = players[_id].id
     document.getElementById('info-name').innerHTML = players[_id].name
@@ -99,13 +99,13 @@ function removePlayer() {
 
 
 // Delete vehicle
-function dv() { $.post('http://rdrp_admin/dv', JSON.stringify({player:selectedPlayer})) }
+function dv() { $.post('http://rdrp_admin/dv', JSON.stringify({})) }
 
 // Toggle Noclip
-function toggleNoclip() { $.post('http://rdrp_admin/noclip', JSON.stringify({player:selectedPlayer})) }
+function toggleNoclip() { $.post('http://rdrp_admin/noclip', JSON.stringify({})) }
 
 // Toggle Ghost
-function toggleGhost() { $.post('http://rdrp_admin/ghost', JSON.stringify({player:selectedPlayer})) }
+function toggleGhost() { $.post('http://rdrp_admin/ghost', JSON.stringify({})) }
 
 // Copy Coords
 function coords() { $.post('http://rdrp_admin/coords', JSON.stringify({})) }
@@ -114,29 +114,29 @@ function coords() { $.post('http://rdrp_admin/coords', JSON.stringify({})) }
 function announce() { modalShow("announce", "Global Announce", "Enter a message below to send a global announcement to all players.", 0, true) }
 
 // Clear Area
-function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({player:selectedPlayer})) }
+function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({})) }
 
 
 // Direct message
 function directMessage() { modalShow("directMessage", "Direct Message", "Send a player a direct message in text chat", 0, true) }
 
 // Goto player
-function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({player:selectedPlayer})) }
+function goto() { $.post('http://rdrp_admin/goto', JSON.stringify({player:players[selectedPlayer].id})) }
 
 // Bring player
-function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({player:selectedPlayer})) }
+function bring() { $.post('http://rdrp_admin/bring', JSON.stringify({player:players[selectedPlayer].id})) }
 
 // Warn player
 function warn() { modalShow("warn", "Warn Player", "Warn a player with a mesage. Player will have to aknowladge the warning before continuing.", 1, true) }
 
 // Chain player
-function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({player:selectedPlayer})) }
+function chain() { $.post('http://rdrp_admin/chain', JSON.stringify({player:players[selectedPlayer].id})) }
 
 // Slap player
-function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({player:selectedPlayer})) }
+function slap() { $.post('http://rdrp_admin/slap', JSON.stringify({player:players[selectedPlayer].id})) }
 
 // Slay player
-function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({player:selectedPlayer})) }
+function slay() { $.post('http://rdrp_admin/slay', JSON.stringify({player:players[selectedPlayer].id})) }
 
 // Kick player
 function kick() { modalShow("kick", "Kick Player", "Kick player from server. Enter your reason below.", 2, true) }
@@ -162,7 +162,7 @@ function staffPerms() {  }
 
 /**
  * This will open the modal and edit content  depending on params.
- * @param   {function}  _action      what function to declare, set null to not complete action
+ * @param   {string}  _action      what function to declare, set null to not complete action
  * @param   {string}    _title       declare the title of modal
  * @param   {string}    _body        declare sub text to display, usually description
  * @param   {int}       _style       0: info, 1: warning, 2: danger 
@@ -215,8 +215,8 @@ function modalHide(_action) {
     let data = document.getElementById('modal-data').value
 
     if (typeof _action == "string") {
-        if (data == "" || data == null) { $.post(`http://rdrp_admin/${_action}`, JSON.stringify({data:data})); console.log(`Sent post to http://rdrp_admin/${_action} with json: ${JSON.stringify({data:data, player:selectedPlayer})}`) }
-        else { $.post(`http://rdrp_admin/${_action}`, JSON.stringify({player:selectedPlayer})) }
+        if (data != "" || data != null) { $.post(`http://rdrp_admin/${_action}`, JSON.stringify({data:data, player:players[selectedPlayer].id})) }
+        else { $.post(`http://rdrp_admin/${_action}`, JSON.stringify({player:players[selectedPlayer].id})) }
     }
     else if (_action != null) { console.error(`action needs to be type: 'string'. Action was type: '${typeof _action}'`)}  
 

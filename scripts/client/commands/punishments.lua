@@ -1,5 +1,6 @@
 RegisterNUICallback('warn', function(data, cb)
-
+    data.staff = GetPlayerName(PlayerId()) .. "[" .. GetPlayerServerId() .. "]"
+    TriggerServerEvent('rdrp_admin:warn', source, data, Config.Perms.Warn )
 
 end)
 
@@ -26,4 +27,11 @@ end)
 RegisterNUICallback('ban', function(data, cb)
 
 
+end)
+
+
+RegisterNetEvent('rdrp_admin:warn', function(data)
+    print("YOU HAVE BEEN WARNED")
+    print("--------------------------------")
+    print(data)
 end)
