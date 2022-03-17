@@ -20,11 +20,21 @@ AddEventHandler('rdrp_admin:allowAccess', function(accessType)
 
 end)
 
-RegisterServerEvent('rdrp_admin:warn')
-AddEventHandler('rdrp_admin:warn', function(src, data, perms)   
+RegisterServerEvent('rdrp_admin:goto')
+AddEventHandler('rdrp_admin:', function(src, data, perms)   
     if checkPerms(src, perms) then
-        print("!!!! WARNING !!!!")
-        print(data.staff .. " warned '" .. GetPlayerName(data.player) .. "[" .. data.player .. "] with reason: " .. data.data)
+        local ped = GetPlayerPed(src)
+        local coords = GetEntityCoords(GetPlayerPed(data.player))
+        SetEntityCoords(ped , coords)
+    end
+end)
+
+RegisterServerEvent('rdrp_admin:bring')
+AddEventHandler('rdrp_admin:', function(src, data, perms)   
+    if checkPerms(src, perms) then
+        local ped = GetPlayerPed(data.player)
+        local coords = GetEntityCoords(GetPlayerPed(src))
+        SetEntityCoords(ped , coords)
     end
 end)
 
@@ -37,6 +47,19 @@ AddEventHandler('rdrp_admin:warn', function(src, data, perms)
     end
 end)
 
+RegisterServerEvent('rdrp_admin:slap')
+AddEventHandler('rdrp_admin:slap', function(src, data, perms)   
+    if checkPerms(src, perms) then
+        TriggerClientEvent('rdrp_admin:slap', data.player)
+    end
+end)
+
+RegisterServerEvent('rdrp_admin:slay')
+AddEventHandler('rdrp_admin:slay', function(src, data, perms)   
+    if checkPerms(src, perms) then
+        TriggerClientEvent('rdrp_admin:slay', data.player)
+    end
+end)
 
 
 
