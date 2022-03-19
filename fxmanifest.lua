@@ -3,26 +3,21 @@ fx_version 'adamant'
 games {'rdr3'}
 rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
 -- dependencies { 'rdrp_core' } -- All resource dependencies
+dependencies { 'rdrp_logs' }
 
 -- Author Metadata
 author 'NEO'
 description 'RDRP | RDRP Admin script for all of your admin needs'
-version 'v0.0'
+version 'v0.27'
 
--- CLient Scripts
-client_scripts {
-    'scripts/client/**.lua'
-}
+-- Client Scripts
+client_scripts { 'scripts/client/**.lua' }
 
 -- Shared Scripts
-shared_scripts {
-    'scripts/shared/*.lua'
-}
+shared_scripts { 'scripts/shared/**.lua' }
 
 -- Server Scripts
-server_scripts {
-    'scripts/server/**.lua'
-}
+server_scripts { 'scripts/server/**.lua' }
 
 -- UI HTML page
 ui_page 'ui/index.html'
