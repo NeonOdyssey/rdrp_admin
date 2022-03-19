@@ -1,14 +1,13 @@
 
 -- Direct message staff > player
 RegisterNUICallback('directMessage', function(data, cb)
+    data.staff = GetPlayerName(PlayerId())
 
     if data.player == GetPlayerServerId(PlayerId()) then
-        print(data.player .. " = " .. GetPlayerServerId(PlayerId()))
-        print(data.data)
         TriggerEvent('chat:addMessage', {
-            color = { 255, 0, 0},
+            color = { 237, 81, 81 },
             multiline = true,
-            args = {"System", "Direct message from staff member:\n" + data.data}
+            args = {"Staff Direct Message", data.data}
         })
     end
 

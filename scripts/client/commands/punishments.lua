@@ -1,31 +1,33 @@
 -- NUI callbacks
 
 RegisterNUICallback('warn', function(data, cb)
-    data.staff = GetPlayerName(PlayerId()) .. "[" .. GetPlayerServerId() .. "]"
+    data.staff = GetPlayerName(PlayerId())
     TriggerServerEvent('rdrp_admin:warn', source, data, Config.Perms.Warn )
 
 end)
 
 RegisterNUICallback('chain', function(data, cb)
-
+    data.staff = GetPlayerName(PlayerId())
 
 end)
 
 RegisterNUICallback('slap', function(data, cb)
+    data.staff = GetPlayerName(PlayerId())
     TriggerServerEvent('rdrp_admin:slap', source, data, Config.Perms.Slap )
 end)
 
 RegisterNUICallback('slay', function(data, cb)
+    data.staff = GetPlayerName(PlayerId())
     TriggerServerEvent('rdrp_admin:slay', source, data, Config.Perms.Slay )
 end)
 
 RegisterNUICallback('kick', function(data, cb)
-
+    data.staff = GetPlayerName(PlayerId())
 
 end)
 
 RegisterNUICallback('ban', function(data, cb)
-
+    data.staff = GetPlayerName(PlayerId())
 
 end)
 

@@ -2,6 +2,7 @@ Keys = {
     Open = 0x3C3DD371
 }
 
+
 Citizen.CreateThread(function() 
     -- Check if player is wanting to open the admin menu
     while true do
@@ -22,8 +23,17 @@ end)
 RegisterNetEvent('rdrp_admin:_open', function() TriggerServerEvent('rdrp_admin:allowAccess', 'open') end)
 
 RegisterNetEvent('rdrp_admin:open', function(data)
+    local playerList = getPlayersAll()
+
+    for i in pairs(playerList) do
+        -- playerList[i].identifiers = GetPlayerIdentifiers(playerList[i].id)
+        -- print(playerList[i].id)
+        -- print(playerList[i].name)
+        -- print(playerList[i].identifiers.steam)
+    end
+
     SetNuiFocus(true, true)
-    SendNUIMessage({type = "open", players = getPlayersAll()})
+    SendNUIMessage({type = "open", players = playerList})
 end)
 
 
