@@ -20,7 +20,7 @@ end)
 -------------------------
 
 -- open menu and send all players
-RegisterNetEvent('rdrp_admin:_open', function() TriggerServerEvent('rdrp_admin:allowAccess', 'open') end)
+RegisterNetEvent('rdrp_admin:_open', function() TriggerServerEvent('rdrp_admin:allowAccess', source, Config.Perms.OpenMenu ) end)
 
 RegisterNetEvent('rdrp_admin:open', function(data)
     local playerList = getPlayersAll()

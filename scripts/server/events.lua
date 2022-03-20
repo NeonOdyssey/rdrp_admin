@@ -1,27 +1,19 @@
 RegisterServerEvent('rdrp_admin:allowAccess')
-AddEventHandler('rdrp_admin:allowAccess', function(accessType)
-    
-    -- Check if the user has permission to open the admin menu
-    if accessType == "open" then
-        -- TriggerEvent('redemrp:getPlayerFromId', source, function(user)                          -- Grab the player by their ID
-        --     if user.getGroup() == 'superAdmin' and source ~= 0 then                             -- Check if the player is a super admin
-        --         if Config.Roles['SUPER'] then allowAccess = true end                            -- Check if super admin can open menu
-
-        --     elseif user.getGroup() == 'admin' and source ~= 0 then                              -- Check if the player is an admin
-        --         if Config.Roles['ADMIN'] then allowAccess = true end                            -- Check if admin can open menu
-
-        --     elseif user.getGroup() == 'mod' and source ~= 0 then                                -- Check if the player is a mod
-        --         if Config.Roles['MOD'] then allowAccess = true end                              -- Check if mod can open menu
-        --     end
-        -- end) 
-
+AddEventHandler('rdrp_admin:allowAccess', function(src, perms)
+    print(perms)
+    if checkPerms(source, perms) then
+        print("Permission allowed")
         TriggerClientEvent('rdrp_admin:open', source)
-    end   
+    end
+end)
+
+RegisterServerEvent('rdrp_admin:goto')
+AddEventHandler('rdrp_admin:goto', function(src, data, perms)
 
 end)
 
 RegisterServerEvent('rdrp_admin:goto')
-AddEventHandler('rdrp_admin:', function(src, data, perms)   
+AddEventHandler('rdrp_admin:goto', function(src, data, perms)   
     if checkPerms(src, perms) then
         local ped = GetPlayerPed(src)
         local coords = GetEntityCoords(GetPlayerPed(data.player))
@@ -32,7 +24,7 @@ AddEventHandler('rdrp_admin:', function(src, data, perms)
 end)
 
 RegisterServerEvent('rdrp_admin:bring')
-AddEventHandler('rdrp_admin:', function(src, data, perms)   
+AddEventHandler('rdrp_admin:bring', function(src, data, perms)   
     if checkPerms(src, perms) then
         local ped = GetPlayerPed(data.player)
         local coords = GetEntityCoords(GetPlayerPed(src))
@@ -105,6 +97,7 @@ function checkMod(user)
     if user.getGroup() == 'superAdmin' or user.getGroup() == 'manager' or user.getGroup() == 'senior' or user.getGroup() == 'admin' or user.getGroup() == 'mod' and src ~= 0 then
         return true
     end
+    print('')
 end
 
 function checkAdmin(user)
@@ -130,5 +123,3 @@ function checkSuper(user)
         return true
     end
 end
-
-

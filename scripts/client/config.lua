@@ -39,10 +39,11 @@ Config.Ghost = {
 -- 0 = mod      (Support staff)
 -------------------------
 Config.Perms = { 
+    OpenMenu = 0,     -- Who can open the menu
 
     -- Chat
-    Dm = 0,             -- Direct message players in chat
-    Announce = 0,       -- Global announcement player will be able to see
+    Dm = 0,           -- Direct message players in chat
+    Announce = 0,     -- Global announcement player will be able to see
 
     -- Tp
     Tp = 1,           -- Teleport to a specific player
@@ -57,10 +58,10 @@ Config.Perms = {
 
     -- World
     Dv = 1,           -- Delete vehicle from world
-    ClearArea = 2,   -- Clear a specific area from props, entities, vehicle, peds ect
+    ClearArea = 2,    -- Clear a specific area from props, entities, vehicle, peds ect
 
     -- Punishments
-    Warn = 0,           -- Warn a player with a message that they have to acknowladge
+    Warn = 0,         -- Warn a player with a message that they have to acknowladge
     Chain = 1,        -- Freeze a player in place (really really slow and add prison cloathing)
     Slap = 1,         -- Slap a player for a set ammount of hp and knockback (may not add)
     Slay = 1,         -- Kill player on spot
@@ -69,8 +70,8 @@ Config.Perms = {
     
     -- Setting players things
     Job = 1,          -- Set a players job
-    Money = 3,      -- Add/Remove money from player
-    Gold = 3,       -- Add/Remove gold from player
-    StaffPerms = 3, -- Change staff perms on players
+    Money = 3,        -- Add/Remove money from player
+    Gold = 3,         -- Add/Remove gold from player
+    StaffPerms = 3,   -- Change staff perms on players
     
 }
