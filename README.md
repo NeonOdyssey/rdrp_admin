@@ -54,7 +54,7 @@ At the moment there are no functionalities that can be used outside of this scri
 > Everyone is permitted to copy and distribute verbatim copies            <br />
 > of this license document, but changing it is not allowed.               <br />
 
-[Read more ...](https://github.com/NeonOdyssey/rdrp_admin/blob/master/LICENSE)
+[Read more ...](https://github.com/NeonOdyssey/rdrp_admin/blob/master/LICENCE)
 
 ## Authors
 
