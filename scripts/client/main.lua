@@ -57,10 +57,10 @@ end)
 -- Get all players in server
 function getPlayersAll()
     local players = {}
-    for i = 0, 32 do
-        if NetworkIsPlayerActive(i) then
-            table.insert(players, {id = GetPlayerServerId(i), name = GetPlayerName(i)})
-        end
+
+    for _, player in ipairs(GetActivePlayers()) do
+        table.insert(players, {id = GetPlayerServerId(player), name = GetPlayerName(player)})
     end
+
     return players
 end
