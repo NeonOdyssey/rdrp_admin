@@ -31,6 +31,10 @@ RegisterNUICallback('ban', function(data, cb)
 
 end)
 
+RegisterNetEvent('rdrp_admin:heal', function(data)
+    TriggerServerEvent('redemrp_status:AddAmount', 100, 100)
+end)
+
 
 -- Net events for NUI callbacks
 
