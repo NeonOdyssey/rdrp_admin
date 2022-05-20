@@ -10,6 +10,7 @@
 Other scripts that are required for this script to run on your server:
 
 - [rdrp_logs](https://github.com/NeonOdyssey/rdrp_logs) - *this is used for logging to console and dedicated discord channels via webhooks*
+- [redemrp_status](https://github.com/RedEM-RP/redemrp_status) - *A status, basic needs system for RedEM:RP Framework*
 
 ## Features
 

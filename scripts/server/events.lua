@@ -23,6 +23,15 @@ AddEventHandler('rdrp_admin:goto', function(src, data, perms)
     end
 end)
 
+RegisterServerEvent('rdrp_admin:heal')
+AddEventHandler('rdrp_admin:heal', function(src, data, perms)   
+    if checkPerms(src, perms) then
+		TriggerClientEvent('rdrp_admin:heal', data.player, data.data)
+		exports.rdrp_logs:console(data.staff.." heal to "..player(data.player), GetCurrentResourceName(), "info")
+		exports.rdrp_logs:discord(data.staff.." heal to "..player(data.player), "admin", GetCurrentResourceName(), "/goto", {{["name"] = "Coords", ["value"] = jason.encode(coords)}})
+	end
+end)
+
 RegisterServerEvent('rdrp_admin:bring')
 AddEventHandler('rdrp_admin:bring', function(src, data, perms)   
     if checkPerms(src, perms) then
