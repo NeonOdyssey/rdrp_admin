@@ -1,49 +1,61 @@
 RegisterServerEvent('rdrp_admin:allowAccess')
-AddEventHandler('rdrp_admin:allowAccess', function(accessType)
+AddEventHandler('rdrp_admin:allowAccess', function(accessType, data)
+    local src = source
     
     -- Check if the user has permission to open the admin menu
     if accessType == "open" then
-        -- TriggerEvent('redemrp:getPlayerFromId', source, function(user)                          -- Grab the player by their ID
-        --     if user.getGroup() == 'superAdmin' and source ~= 0 then                             -- Check if the player is a super admin
-        --         if Config.Roles['SUPER'] then allowAccess = true end                            -- Check if super admin can open menu
+        TriggerEvent('redemrp:getPlayerFromId', src, function(user)
+            if user.getGroup():lower() == 'superadmin' and src ~= 0 then
+                if Config.Perms.Open <= 2 then TriggerClientEvent('rdrp_admin:open', src, Players()) end
+    
+            elseif user.getGroup():lower() == 'admin' and src ~= 0 then
+                if Config.Perms.Open <= 1 then TriggerClientEvent('rdrp_admin:open', src, Players()) end
+    
+            elseif user.getGroup():lower() == 'mod' and src ~= 0 then
+                if Config.Perms.Open <= 0 then TriggerClientEvent('rdrp_admin:open', src, Players()) end
 
-        --     elseif user.getGroup() == 'admin' and source ~= 0 then                              -- Check if the player is an admin
-        --         if Config.Roles['ADMIN'] then allowAccess = true end                            -- Check if admin can open menu
+            end
+        end)
 
-        --     elseif user.getGroup() == 'mod' and source ~= 0 then                                -- Check if the player is a mod
-        --         if Config.Roles['MOD'] then allowAccess = true end                              -- Check if mod can open menu
-        --     end
-        -- end) 
+    -- elseif accessType == 'dm'           and checkPerms(src, Config.Perms.Dm)        then 
+    -- elseif accessType == 'announce'     and checkPerms(src, Config.Perms.Announce)  then 
 
-        TriggerClientEvent('rdrp_admin:open', source)
-    end   
+    elseif accessType == 'goto'         and checkPerms(src, Config.Perms.Goto)      then SetEntityCoords(GetPlayerPed(src) , GetEntityCoords(GetPlayerPed(data)))
+    elseif accessType == 'tpm'          and checkPerms(src, Config.Perms.Tpm)       then TriggerClientEvent('rdrp_admin:_tpm', src)
+    elseif accessType == 'bring'        and checkPerms(src, Config.Perms.Bring)     then SetEntityCoords(GetPlayerPed(data) , GetEntityCoords(GetPlayerPed(src)))
+    elseif accessType == 'noclip'       and checkPerms(src, Config.Perms.Noclip)    then TriggerClientEvent('rdrp_admin:_noclip', src)
 
+    elseif accessType == 'ghost'        and checkPerms(src, Config.Perms.Ghost)     then TriggerClientEvent('rdrp_admin:_ghost', src)
+    elseif accessType == 'heal'         and checkPerms(src, Config.Perms.Heal)      then TriggerClientEvent('rdrp_admin:_heal', data.player)
+    -- elseif accessType == 'spectate'     and checkPerms(src, Config.Perms.Spectate)  then 
+
+    elseif accessType == 'dv'           and checkPerms(src, Config.Perms.Dv)        then TriggerClientEvent('rdrp_admin:_dv', src)
+    -- elseif accessType == 'cleararea'    and checkPerms(src, Config.Perms.ClearArea) then 
+    elseif accessType == 'coords'       and checkPerms(src, Config.Perms.Coords)    then TriggerClientEvent('rdrp_admin:_coords', src)
+
+    elseif accessType == 'warn'         and checkPerms(src, Config.Perms.Warn)      then 
+    elseif accessType == 'chain'        and checkPerms(src, Config.Perms.Chain)     then 
+    elseif accessType == 'slap'         and checkPerms(src, Config.Perms.Slap)      then 
+    elseif accessType == 'slay'         and checkPerms(src, Config.Perms.Slay)      then 
+    elseif accessType == 'kick'         and checkPerms(src, Config.Perms.Kick)      then 
+    elseif accessType == 'ban'          and checkPerms(src, Config.Perms.Ban)       then 
+
+    elseif accessType == 'job'          and checkPerms(src, Config.Perms.Job)       then 
+    elseif accessType == 'money'        and checkPerms(src, Config.Perms.Money)     then 
+    elseif accessType == 'gold'         and checkPerms(src, Config.Perms.Gold)      then 
+    elseif accessType == 'staffperms'   and checkPerms(src, Config.Perms.StaffPerms)then 
+    else  print('Get fucked mate!!') end
 end)
 
-RegisterServerEvent('rdrp_admin:warn')
-AddEventHandler('rdrp_admin:warn', function(src, data, perms)   
-    if checkPerms(src, perms) then
-        print("!!!! WARNING !!!!")
-        print(data.staff .. " warned '" .. GetPlayerName(data.player) .. "[" .. data.player .. "] with reason: " .. data.data)
+
+
+function Players()
+    local players = {}
+    for k,i in pairs(GetPlayers()) do
+        table.insert(players, {id = i, name = GetPlayerName(i)})
     end
-end)
-
-RegisterServerEvent('rdrp_admin:warn')
-AddEventHandler('rdrp_admin:warn', function(src, data, perms)   
-    if checkPerms(src, perms) then
-        print("!!!! WARNING !!!!")
-        print(data.staff .. " warned '" .. GetPlayerName(data.player) .. "[" .. data.player .. "] with reason: " .. data.data)
-        TriggerClientEvent('rdrp_admin:warn', data.player, data.data)
-    end
-end)
-
-
-
-
-
-
-
-
+    return players
+end
 
 -- Check if player has perm levels
 function checkPerms(src, perms)

@@ -2,21 +2,20 @@
 -- Ghost Config
 -------------------------
 
-ghost = {
-    status  = false,
-    player  = PlayerPedId()
+Ghost = {
+    Status  = false,
+    Player  = PlayerPedId()
 }
 
 
 -------------------------
 -- NUI Callback
 -------------------------
-
-RegisterNUICallback('ghost', function(data, cb)
-    ghost.toggle()
-    if Config.Ghost.CloseOnToggle then
-        SendNUIMessage({type = "close"})
-    end
+RegisterCommand("rdrp_ghost", function() TriggerServerEvent('rdrp_admin:allowAccess', 'ghost') end, false)
+RegisterNUICallback('ghost', function() TriggerServerEvent('rdrp_admin:allowAccess', 'ghost') end)
+RegisterNetEvent('rdrp_admin:_ghost', function()
+    ghostToggle()
+    if Config.Ghost.CloseOnToggle then SendNUIMessage({type = "close", ghostStatus = not Ghost.Status}) end
 end)
 
 
@@ -24,7 +23,7 @@ end)
 -- Ghost Functions
 -------------------------
 
-function ghost.toggle()
-    ghost.status = not ghost.status
-    SetEntityVisible(ghost.player, not ghost.status, false)
+function ghostToggle()
+    Ghost.Status = not Ghost.Status
+    SetEntityVisible(Ghost.Player, not Ghost.Status, false)
 end

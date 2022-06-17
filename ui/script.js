@@ -1,30 +1,30 @@
 let selectedPlayer = 999;
 let players = [{name: "NEO", id:9, steam:"steam:012345678900000"}, {name: "RandomPlayer", id:12, steam:"steam:000000000000000"}, {name: "SkullOG", id:13, steam:"steam:xxxxxxxxxxxxxxx"}];
-let perms = 1; // Mod: 0, Admin: 1, Senior: 2, Manager: 3, Super: 4
+let perms = 1; // Mod: 0, Admin: 1, Senior: 2, Manager: 3, Super: 4, disabled: 5
 let modalAction = null;
 let buttonIds = { 
     "dv": 1,
     "noclip": 1,
     "ghost": 1,
-    "coords": 4,
-    "announce": 0,
-    "clear-area": 2,
+    "coords": 0,
+    "announce": 5,
+    "clear-area": 5,
     "tpm": 1,
-    "dm": 0,
+    "dm": 5,
     "goto": 1,
     "bring": 1,
-    "warn": 0,
-    "chain": 1,
-    "slap": 1,
-    "slay": 1,
-    "kick": 1,
-    "ban": 1,
-    "job": 1,
-    "money": 3,
-    "gold": 3,
-    "perms": 3,
+    "warn": 5,
+    "chain": 5,
+    "slap": 5,
+    "slay": 5,
+    "kick": 5,
+    "ban": 5,
+    "job": 5,
+    "money": 5,
+    "gold": 5,
+    "perms": 5,
     "heal": 1,
-    "spectate": 1
+    "spectate": 5
 }
 
 $(function(){ 
@@ -39,9 +39,26 @@ $(function(){
             _open()
         }
         else if(event.data.type == "close"){ _close() }
-        else if(event.data.type == "coords") {document.execCommand("copy", false, event.data.data)}
+        else if(event.data.type == "copyToClipboard") { 
+            var x = Number((event.data.coords.x).toFixed(4));
+            var y = Number((event.data.coords.y).toFixed(4));
+            var z = Number((event.data.coords.z).toFixed(4));
+            var heading = Number((event.data.coords.heading).toFixed(4));
+            var str = "{ x:" + x + ", y:" + y + ", z:" + z + ", heading:" + heading + " }";
+            copyTextToClipboard(str)
+        }
     }) 
 })
+
+// Copy text to clipboard
+function copyTextToClipboard(text) {
+    var copyFrom = $('<textarea/>');
+    copyFrom.text(text);
+    $('body').append(copyFrom);
+    copyFrom.select();
+    document.execCommand('copy');
+    copyFrom.remove();
+}
 
 // Open admin panel
 function _open() { 
@@ -116,6 +133,8 @@ function announce() { modalShow("announce", "Global Announce", "Enter a message 
 // Clear Area
 function clearArea() { $.post('http://rdrp_admin/clearArea', JSON.stringify({})) }
 
+// Clear Area
+function tpm() { $.post('http://rdrp_admin/tpm', JSON.stringify({})) }
 
 // Direct message
 function directMessage() { modalShow("directMessage", "Direct Message", "Send a player a direct message in text chat", 0, true) }
@@ -144,6 +163,9 @@ function kick() { modalShow("kick", "Kick Player", "Kick player from server. Ent
 // Ban player
 function ban() { modalShow("ban", "Ban Player", "Ban player from server. Enter your reason below.", 2, true) }
 
+// Heal player
+function heal() { $.post('http://rdrp_admin/heal', JSON.stringify({player:players[selectedPlayer].id})) }
+
 // Set players job
 function setJob() {  }
 
@@ -162,7 +184,7 @@ function staffPerms() {  }
 
 /**
  * This will open the modal and edit content  depending on params.
- * @param   {string}  _action      what function to declare, set null to not complete action
+ * @param   {string}    _action      what function to declare, set null to not complete action
  * @param   {string}    _title       declare the title of modal
  * @param   {string}    _body        declare sub text to display, usually description
  * @param   {int}       _style       0: info, 1: warning, 2: danger 
@@ -255,7 +277,7 @@ return `<li class="py-4"><div class="flex items-center space-x-4"><div class="fl
 }
 
 function a16b3863105(){
-    document.getElementById("a16b3863105").innerHTML = `<div class="text-center flex-col text-sm text-gray-600"><p> Copyright 2019 - 2022 Pixel Perfect Studios All rights reserved</p><p> This software is has been licensed to Unchained RP. Contact <a href="https://www.pixelperfect.gg/discord"></a>NEO</a> for details.</p></div>`
+    document.getElementById("a16b3863105").innerHTML = `<div class="text-center flex-col text-sm text-gray-600"><p> Copyright 2021 | N3ON | All rights reserved</p><p> This software is has been licensed to Unchained RP. Contact <a href="https://www.pixelperfect.gg/discord"></a>NEO</a> for details.</p></div>`
 }
 
 function inputTextbox() {

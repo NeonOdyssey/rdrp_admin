@@ -1,43 +1,12 @@
 <html>
 <head>
+    <script> window['console']['warn'] = function() {} </script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="script.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <style>
-        #bg {transition: all 0.5s ease-in-out; opacity: 0;}
-        #panel {transition: all 0.5s ease-in-out; transform: translateX(100%);}
-        #bg.show { opacity: 1; }
-        #panel.show { transform: translateX(0) }
-
-        #player-selected, #no-player-selected { transform: all 0.1s ease-in-out;}
-        .hide { opacity: 0; display: none; }
-
-        ::-webkit-scrollbar { width: 8px;}
-        ::-webkit-scrollbar-track { background: #00000000; }
-        ::-webkit-scrollbar-thumb { background: #5360d142; }
-        ::-webkit-scrollbar-thumb:hover { background: #5360d15e; }
-
-        #modal-bg, #modal {transition: all 0.3s ease-in-out; opacity: 1;}
-        #modal {transform: translateY(0%);}
-        #modal-div.hide {display: none;}
-        #modal-bg.hide{opacity: 0; display: none;}
-        #modal.hide {transform: translateY(4%); opacity: 1; display: none;}
-        #modal-icon-info.hide, #modal-icon-warning.hide, #modal-danger-info.hide { display: none; }
-    </style>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                    }
-                }
-            },
-            plugins: [ require('@tailwindcss/forms'), ],
-        }
-    </script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -217,7 +186,7 @@
                                             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-400">Teleport</dt>
                                             <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
-                                                <button id="goto" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="tp()">Goto Player</button>
+                                                <button id="goto" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="goto()">Goto Player</button>
                                                 <button id="bring" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="bring()">Bring Player</button>
                                             </dd>
                                             </div>

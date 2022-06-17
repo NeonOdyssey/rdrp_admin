@@ -1,17 +1,17 @@
-Keys = {
-    Open = 0x3C3DD371
-}
+RegisterCommand("rdrp_admin", function()
+    TriggerEvent('rdrp_admin:_open')
+end, false)
 
-Citizen.CreateThread(function() 
-    -- Check if player is wanting to open the admin menu
-    while true do
-        Citizen.Wait(0)
-        if IsControlJustReleased(0, Keys.Open) then
-            TriggerEvent('rdrp_admin:_open')
-        end
-    end
+Citizen.CreateThread(function()
+	while true do
+        SetDiscordAppId(947262835598163968)
+        SetRichPresence("In County: "..#GetActivePlayers().." Players")
+		SetDiscordRichPresenceAsset('unchainedrp_logo')
+        SetDiscordRichPresenceAssetText('UCRP.co.uk')
+        SetDiscordRichPresenceAction(0, "Join!", "https://discord.gg/uncrp")
+		Citizen.Wait(60000)
+	end
 end)
-
 
 
 -------------------------
@@ -21,9 +21,9 @@ end)
 -- open menu and send all players
 RegisterNetEvent('rdrp_admin:_open', function() TriggerServerEvent('rdrp_admin:allowAccess', 'open') end)
 
-RegisterNetEvent('rdrp_admin:open', function(data)
+RegisterNetEvent('rdrp_admin:open', function(players)
     SetNuiFocus(true, true)
-    SendNUIMessage({type = "open", players = getPlayersAll()})
+    SendNUIMessage({type = "open", players = players})
 end)
 
 
@@ -43,14 +43,10 @@ end)
 -------------------------
 
 -- Get players close to player
-
--- Get all players in server
-function getPlayersAll()
+function getPlayers()
     local players = {}
-    for i = 0, 32 do
-        if NetworkIsPlayerActive(i) then
-            table.insert(players, {id = GetPlayerServerId(i), name = GetPlayerName(i)})
-        end
+    for _, player in ipairs(GetActivePlayers()) do
+        table.insert(players, {id = GetPlayerServerId(player), name = GetPlayerName(player)})
     end
     return players
 end

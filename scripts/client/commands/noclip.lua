@@ -3,6 +3,7 @@
 -------------------------
 
 Noclip = {
+    Status = false,
     -- Configpurable controls
     IncreaseSpeedControl	= `INPUT_MOVE_RIGHT_ONLY`,
     DecreaseSpeedControl	= `INPUT_MOVE_LEFT_ONLY`,
@@ -22,11 +23,11 @@ Noclip = {
 -- NUI Callback
 -------------------------
 
-RegisterNUICallback('noclip', function(data, cb)
+RegisterCommand("rdrp_noclip", function() TriggerServerEvent('rdrp_admin:allowAccess', 'noclip') end, false)
+RegisterNUICallback('noclip', function() TriggerServerEvent('rdrp_admin:allowAccess', 'noclip') end)
+RegisterNetEvent('rdrp_admin:_noclip', function()
     Toggle()
-    if Config.Noclip.CloseOnToggle then
-        SendNUIMessage({type = "close"})
-    end
+    if Config.Noclip.CloseOnToggle then SendNUIMessage({type = "close", noclipStatus = not Noclip.Status}) end
 end)
 
 
@@ -34,20 +35,19 @@ end)
 -- Noclip Functions
 -------------------------
 
-local Enabled = false
 local Speed = Noclip.Speed
 
 -- Toggles noclip
 function Toggle()
-    Enabled = not Enabled
+    Noclip.Status = not Noclip.Status
     local entity = GetNoClipTarget()
 
-    SetEntityInvincible(PlayerPedId(), Enabled)
+    SetEntityInvincible(PlayerPedId(), Noclip.Status)
 	ClearPedTasksImmediately(entity, false, false)
-    FreezeEntityPosition(entity, Enabled)
+    FreezeEntityPosition(entity, Noclip.Status)
 	SetEntityHeading(entity, TranslateHeading(entity, GetEntityHeading(entity)))
     if Config.Noclip.Ghost then
-        SetEntityVisible(PlayerPedId(), not Enabled, false)
+        SetEntityVisible(PlayerPedId(), not Noclip.Status, false)
     end
 end
 
@@ -124,7 +124,7 @@ end
 
 -- On resource stop stop noclip
 AddEventHandler('onResourceStop', function(resourceName)
-	if GetCurrentResourceName() == resourceName and Enabled then
+	if GetCurrentResourceName() == resourceName and Noclip.Status then
 		Toggle()
 	end
 end)
@@ -140,7 +140,7 @@ CreateThread(function()
 	while true do
 		Wait(0)
 
-		if Enabled then
+		if Noclip.Status then
 
 			DisableFirstPersonCamThisFrame()
 
