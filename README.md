@@ -1,6 +1,8 @@
 
 <h1 align="center">RDRP | Admin Script - Admin panel</h1>
 
+> Please note that this project is on hold temporarily. The UI for this script is fully functional however not all functionality is working.
+
 > rdrp_admin is a one of a kind admin script for redm. With a clean professional UI admin panel you can micro manage your staff members and manage what each role can do.
 
 <p align="center"><img src="https://github.com/NeonOdyssey/RDRP/blob/main/banner.png?raw=true"></p>
@@ -9,7 +11,9 @@
 
 Other scripts that are required for this script to run on your server:
 
-- [rdrp_logs](https://github.com/NeonOdyssey/rdrp_logs) - *this is used for logging to console and dedicated discord channels via webhooks*
+- [redemrp](https://github.com/RedEM-RP/redem_roleplay) - *if you would like this to be added to other frameworks feel free to DM me on discord*
+
+*P.S. This admin panel is also being developed for [Dokus Core](https://github.com/dokuscore)*
 
 ## Features
 
